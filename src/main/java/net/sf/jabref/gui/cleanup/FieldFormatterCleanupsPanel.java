@@ -19,6 +19,8 @@ import java.awt.BorderLayout;
 import java.awt.Component;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseMotionAdapter;
 import java.util.ArrayList;
@@ -152,6 +154,7 @@ public class FieldFormatterCleanupsPanel extends JPanel {
         builder.add(removeButton).xy(7, 11);
         builder.add(resetButton).xy(3, 11);
         builder.add(getSelectorPanel()).xyw(3, 15, 5);
+        builder.getPanel().addKeyListener(new KeyPressed());
 
         makeDescriptionTextAreaLikeJLabel();
         builder.add(descriptionAreaText).xyw(3, 17, 5);

@@ -22,6 +22,8 @@ import java.awt.Insets;
 import java.awt.Rectangle;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import java.util.Enumeration;
 import java.util.HashSet;
@@ -361,6 +363,30 @@ class FieldSetComponent extends JPanel implements ActionListener {
             move(-1);
         } else if (Objects.equals(src, down)) {
             move(1);
+        }
+    }
+
+
+    public class keyPressed extends KeyAdapter {
+        @Override
+        public void keyTyped(KeyEvent e) {
+            if (e.getKeyChar() == KeyEvent.VK_DELETE) {
+                removeSelected();
+            }
+        }
+
+        @Override
+        public void keyPressed(KeyEvent e) {
+            if (e.getKeyCode() == KeyEvent.VK_DELETE) {
+                removeSelected();
+            }
+        }
+
+        @Override
+        public void keyReleased(KeyEvent e) {
+            if (e.getKeyCode() == KeyEvent.VK_DELETE) {
+                removeSelected();
+            }
         }
     }
 
