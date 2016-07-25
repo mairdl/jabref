@@ -119,6 +119,7 @@ public class GroupsTree extends JTree implements DragSourceListener,
         setVisibleRowCount(Globals.prefs.getInt(JabRefPreferences.GROUPS_VISIBLE_ROWS));
         getSelectionModel().setSelectionMode(
                 TreeSelectionModel.DISCONTIGUOUS_TREE_SELECTION);
+        this.setFocusable(true);
     }
 
     @Override
