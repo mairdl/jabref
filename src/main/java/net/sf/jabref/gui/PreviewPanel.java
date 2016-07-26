@@ -381,4 +381,7 @@ public class PreviewPanel extends JPanel
 
     }
 
+    public PrintAction getPrintAction() {
+        return printAction;
+    }
 }
