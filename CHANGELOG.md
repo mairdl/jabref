@@ -20,6 +20,7 @@ We refer to [GitHub issues](https://github.com/JabRef/jabref/issues) by using `#
 - Added ISBN integrity checker
 - Added filter to not show selected integrity checks
 - [#1225](https://github.com/JabRef/jabref/issues/1225): Hotkey-system is now consistent
+- Added print entry preview to the right click menu
 
 ### Fixed
 - Fixed [#1264](https://github.com/JabRef/jabref/issues/1264): S with caron does not render correctly
