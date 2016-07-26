@@ -9,6 +9,7 @@ import java.awt.event.KeyEvent;
 public class KeyBindingsListener extends KeyAdapter {
 
     private final KeyBindingTable table;
+    boolean isDeleteKey = false;
 
     public KeyBindingsListener(KeyBindingTable table) {
         this.table = table;
@@ -31,30 +32,31 @@ public class KeyBindingsListener extends KeyAdapter {
             int kc = evt.getKeyCode();
             boolean isFunctionKey = (kc >= KeyEvent.VK_F1) && (kc <= KeyEvent.VK_F12);
             boolean isEscapeKey = kc == KeyEvent.VK_ESCAPE;
-            boolean isDeleteKey = kc == KeyEvent.VK_DELETE;
+            isDeleteKey = kc == KeyEvent.VK_DELETE;
             if (!(isFunctionKey || isEscapeKey || isDeleteKey)) {
                 return; // need a modifier except for function, escape and delete keys
             }
         }
 
-        final String code = KeyEvent.getKeyText(evt.getKeyCode());
+        int code = evt.getExtendedKeyCode();
         // second key cannot be a modifiers
-        if ("Tab".equals(code)
-                || "Backspace".equals(code)
-                || "Enter".equals(code)
-                || "Space".equals(code)
-                || "Ctrl".equals(code)
-                || "Shift".equals(code)
-                || "Alt".equals(code)) {
+        if (code == KeyEvent.VK_TAB
+                || code == KeyEvent.VK_BACK_SPACE
+                || code == KeyEvent.VK_ENTER
+                || code == KeyEvent.VK_SPACE
+                || code == KeyEvent.VK_CONTROL
+                || code == KeyEvent.VK_SHIFT
+                || code == KeyEvent.VK_ALT) {
             return;
         }
 
         // COMPUTE new key binding
         String newKey;
+        String keyCode = KeyBindingPreferences
         if ("".equals(modifier)) {
-            newKey = code;
+            newKey = keyCode;
         } else {
-            newKey = modifier.toLowerCase().replace("+", " ") + " " + code;
+            newKey = modifier.toLowerCase().replace("+", " ") + " " + keyCode;
         }
 
         // SHOW new key binding
