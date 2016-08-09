@@ -53,7 +53,7 @@ public class KeyBindingsListener extends KeyAdapter {
         // COMPUTE new key binding
         String newKey;
         if (isDeleteKey) {
-            code = KeyBinding.DELETE_ENTRY.getDefaultBinding();
+            code = KeyBinding.DELETE_ENTRY.getLocalization();
         }
         if ("".equals(modifier)) {
             newKey = code;

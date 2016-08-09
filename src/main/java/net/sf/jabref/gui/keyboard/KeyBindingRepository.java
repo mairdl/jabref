@@ -77,7 +77,7 @@ public class KeyBindingRepository {
     }
 
     private Optional<KeyBinding> getKeyBinding(KeyBinding key) {
-        return Arrays.stream(KeyBinding.values()).filter(b -> b.equals(key)).findFirst();
+        return Arrays.stream(KeyBinding.values()).filter(b -> b.getLocalization().equals(key)).findFirst();
     }
 
     public void resetToDefault(String key) {
