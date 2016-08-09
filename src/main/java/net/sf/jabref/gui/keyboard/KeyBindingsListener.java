@@ -17,7 +17,7 @@ public class KeyBindingsListener extends KeyAdapter {
 
     @Override
     public void keyPressed(KeyEvent evt) {
-        // first check if anything is selected if not the return
+        // first check if anything is selected if not then return
         final int selRow = table.getSelectedRow();
         boolean isAnyRowSelected = selRow >= 0;
         if (!isAnyRowSelected) {
@@ -38,25 +38,27 @@ public class KeyBindingsListener extends KeyAdapter {
             }
         }
 
-        int code = evt.getExtendedKeyCode();
+        String code = KeyEvent.getKeyText(evt.getKeyCode());
         // second key cannot be a modifiers
-        if (code == KeyEvent.VK_TAB
-                || code == KeyEvent.VK_BACK_SPACE
-                || code == KeyEvent.VK_ENTER
-                || code == KeyEvent.VK_SPACE
-                || code == KeyEvent.VK_CONTROL
-                || code == KeyEvent.VK_SHIFT
-                || code == KeyEvent.VK_ALT) {
+        if ("Tab".equals(code)
+                || "Backspace".equals(code)
+                || "Enter".equals(code)
+                || "Space".equals(code)
+                || "Ctrl".equals(code)
+                || "Shift".equals(code)
+                || "Alt".equals(code)) {
             return;
         }
 
         // COMPUTE new key binding
         String newKey;
-        String keyCode = KeyBindingPreferences
+        if (isDeleteKey) {
+            code = KeyBinding.DELETE_ENTRY.getDefaultBinding();
+        }
         if ("".equals(modifier)) {
-            newKey = keyCode;
+            newKey = code;
         } else {
-            newKey = modifier.toLowerCase().replace("+", " ") + " " + keyCode;
+            newKey = modifier.toLowerCase().replace("+", " ") + " " + code;
         }
 
         // SHOW new key binding
